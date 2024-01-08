@@ -1,0 +1,45 @@
+# RuboCop’s default configuration: https://github.com/rubocop/rubocop/blob/master/config/default.yml
+
+AllCops:
+  NewCops: enable
+
+Layout/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Metrics/BlockLength:
+  Exclude: 
+    - test/*
+    - test/**/*
+
+Metrics/ClassLength:
+  Exclude: 
+    - test/*
+    - test/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+Naming/PredicateName:
+  AllowedMethods:
+    - has_many_path
+
+Style/RescueStandardError:
+  EnforcedStyle: implicit
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+Style/Lambda:
+  EnforcedStyle: literal
