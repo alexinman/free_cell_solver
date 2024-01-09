@@ -1,21 +1,11 @@
 class Card
+  attr_reader :face_value, :suit_value
+
   def initialize(id)
-    self.id = id
-    return if id.is_a?(Numeric) && id.integer? && (0..51).include?(id)
+    raise ArgumentError, "expected 0..51, got #{id}" unless id.is_a?(Numeric) && id.integer? && (0..51).include?(id)
 
-    raise ArgumentError, "expected 0..51, got #{id}"
-  end
-
-  # An integer between 0-3, inclusive, representing the 4
-  # different suits.
-  def suit_value
-    @suit_value ||= id % 4
-  end
-
-  # An integer between 1-13, inclusive, representing the 13
-  # difference faces.
-  def face_value
-    @face_value ||= (id / 4) + 1
+    self.face_value = (id / 4) + 1
+    self.suit_value = id % 4
   end
 
   def to_s
@@ -27,14 +17,12 @@ class Card
   end
 
   def ==(other)
-    id == other.id
+    to_s == other.to_s
   end
 
   protected
 
-  # An integer between 0-51, inclusive, representing the 52
-  # different cards in a deck.
-  attr_accessor :id
+  attr_writer :face_value, :suit_value
 
   private
 
