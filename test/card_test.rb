@@ -101,4 +101,12 @@ describe Card do
       end
     end
   end
+
+  describe "when calling #inspect" do
+    it "must return a string representing the object" do
+      card = Card.new(0)
+
+      assert_equal "#<Card #{card}>", card.inspect
+    end
+  end
 end
