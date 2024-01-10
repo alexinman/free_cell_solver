@@ -1,4 +1,6 @@
 class Card
+  SUITS = ["♣", "♦", "♥", "♠"].freeze
+
   attr_reader :face_value, :suit_value
 
   def initialize(id)
@@ -27,10 +29,7 @@ class Card
   private
 
   def suit
-    return "♣" if suit_value.zero?
-    return "♦" if suit_value == 1
-
-    suit_value == 2 ? "♥" : "♠"
+    SUITS[suit_value]
   end
 
   def face
