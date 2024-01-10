@@ -1,8 +1,13 @@
 require "minitest/test_task"
 require "rubocop/rake_task"
+require_relative "test/coverage_validator"
 
 task :run do
   ruby "lib/free_cell.rb"
+end
+
+task :coverage, [:filename] do |_t, args|
+  abort unless CoverageValidator.call(args[:filename])
 end
 
 Minitest::TestTask.create do |t|
@@ -16,4 +21,4 @@ RuboCop::RakeTask.new(:lint) do |task|
   task.patterns = ["lib/**/*.rb", "test/**/*.rb", "Rakefile", "Gemfile"]
 end
 
-task default: [:test, :lint]
+task default: [:test, :lint, :coverage]
