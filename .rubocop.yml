@@ -3,43 +3,47 @@
 AllCops:
   NewCops: enable
 
+Layout/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
 Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-
-Style/FrozenStringLiteralComment:
-  EnforcedStyle: never
-
 Metrics/BlockLength:
-  Exclude: 
+  Exclude:
     - test/*
     - test/**/*
 
 Metrics/ClassLength:
-  Exclude: 
+  Exclude:
     - test/*
     - test/**/*
 
-Style/Documentation:
-  Enabled: false
-
-Style/SymbolArray:
-  EnforcedStyle: brackets
-
-Layout/SpaceAroundEqualsInParameterDefault:
-  EnforcedStyle: no_space
+Metrics/MethodLength:
+  Max: 5
+  CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
 
 Naming/PredicateName:
   AllowedMethods:
     - has_many_path
 
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Style/Lambda:
+  EnforcedStyle: literal
+
 Style/RescueStandardError:
   EnforcedStyle: implicit
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
 
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
 
-Style/Lambda:
-  EnforcedStyle: literal
+Style/SymbolArray:
+  EnforcedStyle: brackets

@@ -27,16 +27,10 @@ class Card
   private
 
   def suit
-    case suit_value
-    when 0
-      "♣"
-    when 1
-      "♦"
-    when 2
-      "♥"
-    when 3
-      "♠"
-    end
+    return "♣" if suit_value.zero?
+    return "♦" if suit_value == 1
+
+    suit_value == 2 ? "♥" : "♠"
   end
 
   def face
