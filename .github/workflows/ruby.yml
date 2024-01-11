@@ -1,5 +1,5 @@
 name: "Ruby CI"
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -7,11 +7,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1 # v1.115.3
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
       - name: Run tests
         run: bundle exec rake test
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/.last_run.json
 
   lint:
     runs-on: ubuntu-latest
@@ -19,8 +24,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1 # v1.115.3
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
       - name: Lint files
         run: bundle exec rake lint
+
+  coverage:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Download coverage
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
+      - name: Verify coverage
+        run: bundle exec rake coverage[.last_run.json]

@@ -1,3 +1,4 @@
+require "simplecov"
 require "custom_assertions"
 require "minitest/autorun"
 require "minitest/reporters"

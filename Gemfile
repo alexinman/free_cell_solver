@@ -14,3 +14,9 @@ gem "minitest-reporters", require: false
 
 # Lint Ruby files
 gem "rubocop", require: false
+
+# Code coverage for Ruby
+gem "simplecov", require: false
+
+# Ruby string class extension
+gem "colorize", require: false
