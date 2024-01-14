@@ -19,6 +19,37 @@ class Card
     to_s == other.to_s
   end
 
+  def self.parse(input)
+    raise ArgumentError, "invalid: #{input}" unless (2..3).include?(input.size)
+
+    Card.new((parse_face_value(input) * 4) + parse_suit_value(input))
+  end
+
+  def self.parse_suit_value(input)
+    return 0 if input[-1].upcase == "C"
+    return 1 if input[-1].upcase == "D"
+    return 2 if input[-1].upcase == "H"
+    return 3 if input[-1].upcase == "S"
+
+    raise ArgumentError, "invalid: #{input}"
+  end
+
+  def self.parse_face_value(input)
+    return 0 if input.chop.upcase == "A"
+    return 10 if input.chop.upcase == "J"
+    return 11 if input.chop.upcase == "Q"
+    return 12 if input.chop.upcase == "K"
+
+    parse_number_face_value(input)
+  end
+
+  def self.parse_number_face_value(input)
+    value = input.chop.to_i - 1
+    raise ArgumentError, "invalid: #{input}" unless (1..9).include?(value)
+
+    value
+  end
+
   protected
 
   attr_writer :face_value, :suit_value, :to_s
