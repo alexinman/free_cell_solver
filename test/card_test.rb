@@ -109,4 +109,51 @@ describe Card do
       assert_equal "#<Card #{card}>", card.inspect
     end
   end
+
+  describe "when calling .parse" do
+    it "must properly parse an ace of clubs" do
+      card = Card.parse("Ac")
+
+      assert_equal "A♣", card.to_s
+    end
+
+    it "must properly parse a two of hearts" do
+      card = Card.parse("2h")
+
+      assert_equal "2♥", card.to_s
+    end
+
+    it "must properly parse a 10 of spades" do
+      card = Card.parse("10s")
+
+      assert_equal "10♠", card.to_s
+    end
+
+    it "must properly parse a jack of diamonds" do
+      card = Card.parse("Jd")
+
+      assert_equal "J♦", card.to_s
+    end
+
+    it "must properly parse a queen" do
+      card = Card.parse("Qd")
+
+      assert_equal "Q♦", card.to_s
+    end
+
+    it "must properly parse a king" do
+      card = Card.parse("Kd")
+
+      assert_equal "K♦", card.to_s
+    end
+
+    it "must raise an ArgumentError when an invalid card is provided" do
+      assert_raises_with_message(ArgumentError, "invalid: 11f") { Card.parse("11f") }
+      assert_raises_with_message(ArgumentError, "invalid: ") { Card.parse("") }
+      assert_raises_with_message(ArgumentError, "invalid: -1d") { Card.parse("-1d") }
+      assert_raises_with_message(ArgumentError, "invalid: 20h") { Card.parse("20h") }
+      assert_raises_with_message(ArgumentError, "invalid: 0h") { Card.parse("0h") }
+      assert_raises_with_message(ArgumentError, "invalid: 9e") { Card.parse("9e") }
+    end
+  end
 end
