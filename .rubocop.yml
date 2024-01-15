@@ -47,3 +47,6 @@ Style/StringLiteralsInInterpolation:
 
 Style/SymbolArray:
   EnforcedStyle: brackets
+
+Style/WordArray:
+  EnforcedStyle: brackets
