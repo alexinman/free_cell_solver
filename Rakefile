@@ -3,7 +3,7 @@ require "rubocop/rake_task"
 require_relative "test/coverage_validator"
 
 task :run do
-  ruby "lib/free_cell.rb"
+  ruby "lib/free_cell.rb", ARGV[1].to_s
 end
 
 task :coverage, [:filename] do |_t, args|
