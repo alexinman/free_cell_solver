@@ -9,6 +9,6 @@ class FreeCellSolver
   end
 
   def solve
-    puts deck.inspect
+    raise NotImplementedError
   end
 end
