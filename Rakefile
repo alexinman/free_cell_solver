@@ -21,4 +21,4 @@ RuboCop::RakeTask.new(:lint) do |task|
   task.patterns = ["lib/**/*.rb", "test/**/*.rb", "Rakefile", "Gemfile"]
 end
 
-task default: [:test, :lint, :coverage]
+task default: [:test, :coverage, :lint]
