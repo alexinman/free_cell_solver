@@ -1,13 +1,14 @@
 class Card
-  SUITS = ["♣", "♦", "♥", "♠"].freeze
+  SUITS = ["♥", "♣", "♦", "♠"].freeze
 
-  attr_reader :face_value, :suit_value, :to_s
+  attr_reader :color, :face_value, :suit_value, :to_s
 
   def initialize(id)
     raise ArgumentError, "expected 0..51, got #{id}" unless id.is_a?(Numeric) && id.integer? && (0..51).include?(id)
 
     self.face_value = (id / 4) + 1
     self.suit_value = id % 4
+    self.color = parse_color
     self.to_s = "#{face}#{suit}".freeze
   end
 
@@ -26,9 +27,9 @@ class Card
   end
 
   def self.parse_suit_value(input)
-    return 0 if ["C", "♣"].include? input[-1].upcase
-    return 1 if ["D", "♦"].include? input[-1].upcase
-    return 2 if ["H", "♥"].include? input[-1].upcase
+    return 0 if ["H", "♥"].include? input[-1].upcase
+    return 1 if ["C", "♣"].include? input[-1].upcase
+    return 2 if ["D", "♦"].include? input[-1].upcase
     return 3 if ["S", "♠"].include? input[-1].upcase
 
     raise ArgumentError, "invalid: #{input}"
@@ -52,9 +53,13 @@ class Card
 
   protected
 
-  attr_writer :face_value, :suit_value, :to_s
+  attr_writer :color, :face_value, :suit_value, :to_s
 
   private
+
+  def parse_color
+    (suit_value % 2).zero? ? :red : :black
+  end
 
   def suit
     SUITS[suit_value]
