@@ -1,11 +1,19 @@
 class State
-  # Hi Candice, this is the fifth class you'll need to implement.
-  # All functionality is described in the tests in cascade_test.rb.
-  # You'll need to implement the following methods:
-  # - initialize(deck)
-  # - cells
-  # - foundations
-  # - cascades
-  # And you can validate your implementation by running `rake`.
-  # Good luck!
+  attr_reader :cascades, :cells, :foundations
+
+  def initialize(deck)
+    self.cells = Array.new(4) { Cell.new }.freeze
+    self.foundations = Array.new(4) { Foundation.new }.freeze
+    self.cascades = deal(deck)
+  end
+
+  private
+
+  attr_writer :cascades, :cells, :foundations
+
+  def deal(deck)
+    Array.new(8) do |i|
+      Cascade.new(Array.new(7) { |j| deck[i + (8 * j)] }.compact)
+    end.freeze
+  end
 end

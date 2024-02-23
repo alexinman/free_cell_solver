@@ -1,12 +1,33 @@
 class Location
-  # Hi Candice, this is the first class you'll need to implement.
-  # All functionality is described in the tests in location_test.rb.
-  # You'll need to implement the following methods:
-  # - initialize(cards)
-  # - add(cards)
-  # - add?(cards)
-  # - remove(number)
-  # - remove?(number)
-  # And you can validate your implementation by running `rake`.
-  # Good luck!
+  def initialize(cards = [])
+    self.internal_cards = cards.dup
+  end
+
+  def add?(_cards)
+    raise NotImplementedError
+  end
+
+  def add(cards)
+    self.internal_cards += cards
+  end
+
+  def remove?(_number)
+    raise NotImplementedError
+  end
+
+  def remove(number)
+    internal_cards.pop(number)
+  end
+
+  def cards
+    internal_cards.dup
+  end
+
+  def empty?
+    internal_cards.empty?
+  end
+
+  private
+
+  attr_accessor :internal_cards
 end

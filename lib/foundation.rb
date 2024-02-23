@@ -1,10 +1,19 @@
 class Foundation < Location
-  # Hi Candice, this is the third class you'll need to implement.
-  # All functionality is described in the tests in foundation_test.rb.
-  # You'll need to implement the following methods:
-  # - initialize
-  # - add?(cards)
-  # - remove?(number)
-  # And you can validate your implementation by running `rake`.
-  # Good luck!
+  def initialize
+    super([])
+  end
+
+  def add?(cards)
+    return false unless cards.length == 1
+
+    value = self.cards.last&.face_value || 0
+    return false unless cards.first.face_value == value + 1
+
+    suit = self.cards.last&.suit_value
+    suit.nil? || suit == cards.first.suit_value
+  end
+
+  def remove?(number)
+    number == 1 && !cards.empty?
+  end
 end
