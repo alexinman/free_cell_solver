@@ -23,7 +23,7 @@ describe State do
     end
 
     it "must properly deal deck to cascades" do
-      deck = Deck.parse(File.read('games/game1.txt'))
+      deck = Deck.parse(File.read("games/game1.txt"))
       state = State.new(deck)
 
       assert_equal ["J♣", "5♠", "4♥", "9♥", "6♦", "A♣", "Q♦"], state.cascades[0].cards.map(&:to_s)
