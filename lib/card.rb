@@ -26,10 +26,10 @@ class Card
   end
 
   def self.parse_suit_value(input)
-    return 0 if input[-1].upcase == "C"
-    return 1 if input[-1].upcase == "D"
-    return 2 if input[-1].upcase == "H"
-    return 3 if input[-1].upcase == "S"
+    return 0 if ["C", "♣"].include? input[-1].upcase
+    return 1 if ["D", "♦"].include? input[-1].upcase
+    return 2 if ["H", "♥"].include? input[-1].upcase
+    return 3 if ["S", "♠"].include? input[-1].upcase
 
     raise ArgumentError, "invalid: #{input}"
   end
