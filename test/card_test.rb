@@ -97,7 +97,7 @@ describe Card do
         card1 = Card.new(0)
         card2 = Card.new(1)
 
-        assert_not_equal card1, card2
+        refute_equal card1, card2
       end
     end
   end
