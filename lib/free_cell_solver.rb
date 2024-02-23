@@ -1,4 +1,5 @@
 require_relative "card"
+require_relative "cards"
 require_relative "deck"
 
 class FreeCellSolver
