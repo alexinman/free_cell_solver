@@ -12,7 +12,6 @@ class CoverageValidator
   end
 
   def call
-    puts "Coverage report: file://#{File.absolute_path("coverage/index.html")}."
     valid?("branch") && valid?("line")
   end
 
@@ -21,12 +20,17 @@ class CoverageValidator
   attr_accessor :result
 
   def valid?(type)
+    valid, verb, color = validate(type)
+    puts "#{type.capitalize} coverage (#{result[type]}%) #{verb} the minimum coverage (100.0%).".colorize(color)
+    puts "See more details: file://#{File.absolute_path("coverage/index.html")}." unless valid
+    valid
+  end
+
+  def validate(type)
     if result[type] == 100
-      puts "#{type.capitalize} coverage (#{result[type]}%) is meets the expected minimum coverage (100.0%).".green
-      true
+      [true, "meets", :green]
     else
-      warn "#{type.capitalize} coverage (#{result[type]}%) is below the expected minimum coverage (100.0%).".red
-      false
+      [false, "is below", :red]
     end
   end
 end
