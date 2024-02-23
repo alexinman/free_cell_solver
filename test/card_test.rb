@@ -55,29 +55,29 @@ describe Card do
 
   describe "when calling #to_s on a valid card" do
     it "must return the correct value" do
-      assert_equal "A♣", Card.new(0).to_s
-      assert_equal "A♦", Card.new(1).to_s
-      assert_equal "A♥", Card.new(2).to_s
+      assert_equal "A♥", Card.new(0).to_s
+      assert_equal "A♣", Card.new(1).to_s
+      assert_equal "A♦", Card.new(2).to_s
       assert_equal "A♠", Card.new(3).to_s
 
-      assert_equal "2♣", Card.new(4).to_s
-      assert_equal "2♦", Card.new(5).to_s
-      assert_equal "2♥", Card.new(6).to_s
+      assert_equal "2♥", Card.new(4).to_s
+      assert_equal "2♣", Card.new(5).to_s
+      assert_equal "2♦", Card.new(6).to_s
       assert_equal "2♠", Card.new(7).to_s
 
-      assert_equal "J♣", Card.new(40).to_s
-      assert_equal "J♦", Card.new(41).to_s
-      assert_equal "J♥", Card.new(42).to_s
+      assert_equal "J♥", Card.new(40).to_s
+      assert_equal "J♣", Card.new(41).to_s
+      assert_equal "J♦", Card.new(42).to_s
       assert_equal "J♠", Card.new(43).to_s
 
-      assert_equal "Q♣", Card.new(44).to_s
-      assert_equal "Q♦", Card.new(45).to_s
-      assert_equal "Q♥", Card.new(46).to_s
+      assert_equal "Q♥", Card.new(44).to_s
+      assert_equal "Q♣", Card.new(45).to_s
+      assert_equal "Q♦", Card.new(46).to_s
       assert_equal "Q♠", Card.new(47).to_s
 
-      assert_equal "K♣", Card.new(48).to_s
-      assert_equal "K♦", Card.new(49).to_s
-      assert_equal "K♥", Card.new(50).to_s
+      assert_equal "K♥", Card.new(48).to_s
+      assert_equal "K♣", Card.new(49).to_s
+      assert_equal "K♦", Card.new(50).to_s
       assert_equal "K♠", Card.new(51).to_s
     end
   end
@@ -154,6 +154,15 @@ describe Card do
       assert_raises_with_message(ArgumentError, "invalid: 20h") { Card.parse("20h") }
       assert_raises_with_message(ArgumentError, "invalid: 0h") { Card.parse("0h") }
       assert_raises_with_message(ArgumentError, "invalid: 9e") { Card.parse("9e") }
+    end
+  end
+
+  describe "when calling .color" do
+    it "must return the correct color" do
+      assert_equal :red, Cards::ACE_OF_HEARTS.color
+      assert_equal :black, Cards::ACE_OF_CLUBS.color
+      assert_equal :red, Cards::ACE_OF_DIAMONDS.color
+      assert_equal :black, Cards::ACE_OF_SPADES.color
     end
   end
 end
