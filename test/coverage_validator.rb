@@ -20,8 +20,17 @@ class CoverageValidator
   attr_accessor :result
 
   def valid?(type)
-    return true if result[type] >= 100
+    valid, verb, color = validate(type)
+    puts "#{type.capitalize} coverage (#{result[type]}%) #{verb} the minimum coverage (100.0%).".colorize(color)
+    puts "See more details: file://#{File.absolute_path("coverage/index.html")}." unless valid
+    valid
+  end
 
-    warn "#{type.capitalize} coverage (#{result[type]}%) is below the expected minimum coverage (100.0%).".red
+  def validate(type)
+    if result[type] == 100
+      [true, "meets", :green]
+    else
+      [false, "is below", :red]
+    end
   end
 end

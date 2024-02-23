@@ -3,7 +3,7 @@ require "rubocop/rake_task"
 require_relative "test/coverage_validator"
 
 task :run do
-  ruby "lib/free_cell.rb", ARGV[1].to_s
+  ruby "lib/run.rb", ARGV[1].to_s
 end
 
 task :coverage, [:filename] do |_t, args|
@@ -21,4 +21,4 @@ RuboCop::RakeTask.new(:lint) do |task|
   task.patterns = ["lib/**/*.rb", "test/**/*.rb", "Rakefile", "Gemfile"]
 end
 
-task default: [:test, :lint, :coverage]
+task default: [:test, :coverage, :lint]
