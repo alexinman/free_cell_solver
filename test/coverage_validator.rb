@@ -6,7 +6,7 @@ class CoverageValidator
     new(...).call
   end
 
-  def initialize(filename=nil)
+  def initialize(filename = nil)
     filename ||= "coverage/.last_run.json"
     self.result = JSON.load_file(filename)["result"]
   end
