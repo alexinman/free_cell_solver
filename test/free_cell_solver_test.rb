@@ -5,7 +5,7 @@ describe FreeCellSolver do
     it "must deal a shuffled deck" do
       solver = FreeCellSolver.new("")
       assert_equal 52, solver.deck.size
-      assert_not_equal solver.deck, solver.deck.sort_by(&:to_s)
+      refute_equal solver.deck, solver.deck.sort_by(&:to_s)
     end
   end
 
