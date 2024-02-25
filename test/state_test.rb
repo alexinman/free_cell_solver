@@ -85,4 +85,20 @@ describe State do
     assert_equal state1, state2
     refute_equal state1.object_id, state2.object_id
   end
+
+  it "must not be equal to another state with different cells, foundations, or cascades" do
+    state1 = State.build(Deck.new)
+
+    state2 = State.build(Deck.new)
+    state2.cells[0].add([Card.new(1)])
+    refute_equal state1, state2
+
+    state2 = State.build(Deck.new)
+    state2.foundations[0].add([Card.new(1)])
+    refute_equal state1, state2
+
+    state2 = State.build(Deck.new)
+    state2.cascades[0].add([Card.new(1)])
+    refute_equal state1, state2
+  end
 end
