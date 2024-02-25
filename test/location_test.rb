@@ -94,4 +94,23 @@ describe Location do
 
     assert_raises(NoMethodError) { location.cards = [] }
   end
+
+  it "must be equal to another location with the same cards" do
+    card1 = Card.new(1)
+    card2 = Card.new(2)
+    location1 = Location.new([card1, card2])
+    location2 = Location.new([card1, card2])
+
+    assert_equal location1, location2
+    refute_equal location1.object_id, location2.object_id
+  end
+
+  it "must not be equal to another location with different cards" do
+    card1 = Card.new(1)
+    card2 = Card.new(2)
+    location1 = Location.new([card1, card2])
+    location2 = Location.new([card1])
+
+    refute_equal location1, location2
+  end
 end

@@ -27,6 +27,10 @@ class Location
     internal_cards.empty?
   end
 
+  def ==(other)
+    cards == other.cards
+  end
+
   private
 
   attr_accessor :internal_cards
