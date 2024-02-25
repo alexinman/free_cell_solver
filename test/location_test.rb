@@ -113,4 +113,21 @@ describe Location do
 
     refute_equal location1, location2
   end
+
+  it "must not be equal to non-Location objects" do
+    card = Card.new(1)
+    location = Location.new([card])
+
+    test_location = TestLocation.new([card])
+
+    refute_equal location, card
+    refute_equal location, nil
+    refute_equal location, 1
+    refute_equal location, "location"
+    refute_equal location, test_location
+    refute_equal test_location, location
+  end
+end
+
+class TestLocation < Location
 end

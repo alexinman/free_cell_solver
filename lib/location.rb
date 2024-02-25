@@ -28,7 +28,7 @@ class Location
   end
 
   def ==(other)
-    cards == other.cards
+    other.instance_of?(self.class) && cards == other.cards
   end
 
   private
