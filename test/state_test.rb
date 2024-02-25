@@ -72,4 +72,17 @@ describe State do
     assert_raises(NoMethodError) { state.foundations = [Foundation.new] }
     assert_raises(NoMethodError) { state.cascades = [Cascade.new] }
   end
+
+  it "must be equal to another state with the same cells, foundations, and cascades" do
+    state1 = State.build(Deck.new)
+    state1.foundations[0].add(state1.cascades[0].remove(1))
+    state1.cells[1].add(state1.cascades[0].remove(1))
+
+    state2 = State.build(Deck.new)
+    state2.foundations[0].add(state2.cascades[0].remove(1))
+    state2.cells[1].add(state2.cascades[0].remove(1))
+
+    assert_equal state1, state2
+    refute_equal state1.object_id, state2.object_id
+  end
 end
