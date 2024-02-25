@@ -56,6 +56,10 @@ class Location
   end
   # *****************************************************
 
+  def ==(other)
+    cards == other.cards
+  end
+
   private
 
   attr_writer :cards
