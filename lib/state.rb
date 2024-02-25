@@ -24,6 +24,12 @@ class State
     end
   end
 
+  def ==(other)
+    cells == other.cells &&
+      foundations == other.foundations &&
+      cascades == other.cascades
+  end
+
   private
 
   attr_writer :cascades, :cells, :foundations
