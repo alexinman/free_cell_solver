@@ -25,7 +25,7 @@ class State
   end
 
   def ==(other)
-    other.instance_of?(State) &&
+    other.instance_of?(self.class) &&
       cells == other.cells &&
       foundations == other.foundations &&
       cascades == other.cascades
