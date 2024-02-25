@@ -6,6 +6,7 @@ require_relative "cell"
 require_relative "foundation"
 require_relative "cascade"
 require_relative "state"
+require_relative "state_formatter"
 
 class FreeCellSolver
   attr_accessor :deck
