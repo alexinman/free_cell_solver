@@ -101,4 +101,9 @@ describe State do
     state2.cascades[0].add([Card.new(1)])
     refute_equal state1, state2
   end
+
+  it "must not be equal to another object that is not a state" do
+    state = State.build(Deck.new)
+    refute_equal state, Object.new
+  end
 end
