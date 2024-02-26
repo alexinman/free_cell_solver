@@ -33,6 +33,10 @@ class Location
 
   alias eql? ==
 
+  def hash
+    cards.hash
+  end
+
   private
 
   attr_accessor :internal_cards
