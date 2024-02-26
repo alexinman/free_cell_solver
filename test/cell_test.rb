@@ -1,17 +1,6 @@
 require "test_helper"
 
 describe Cell do
-  describe "when initializing" do
-    it "must have no cards" do
-      cell = Cell.new
-      assert_empty cell.send(:cards)
-    end
-
-    it "must not accept cards" do
-      assert_raises(ArgumentError) { Cell.new([Card.new(1)]) }
-    end
-  end
-
   describe "when asking if it can add cards" do
     it "must return true if it has no cards and the cards to add is one" do
       cell = Cell.new

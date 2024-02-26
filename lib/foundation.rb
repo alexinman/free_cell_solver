@@ -1,8 +1,4 @@
 class Foundation < Location
-  def initialize
-    super([])
-  end
-
   def add?(cards)
     return false unless cards.length == 1
 
