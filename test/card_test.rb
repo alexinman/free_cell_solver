@@ -102,6 +102,26 @@ describe Card do
     end
   end
 
+  describe "when calling #eql? on a valid card" do
+    describe "with a card that has the same id" do
+      it "must return true" do
+        card1 = Card.new(0)
+        card2 = Card.new(0)
+
+        assert card1.eql?(card2)
+      end
+    end
+
+    describe "with a card that has a different id" do
+      it "must return false" do
+        card1 = Card.new(0)
+        card2 = Card.new(1)
+
+        refute card1.eql?(card2)
+      end
+    end
+  end
+
   describe "when calling #inspect" do
     it "must return a string representing the object" do
       card = Card.new(0)
