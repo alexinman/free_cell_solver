@@ -6,7 +6,7 @@ class Deck < Array
   def self.parse(input)
     cards = input.split(/\s+/).map { Card.parse(_1) }
     raise ArgumentError, "invalid: expected 52 cards, got #{cards.size}" if cards.size != 52
-    raise ArgumentError, "invalid: expected unique cards" if cards != cards.uniq(&:to_s)
+    raise ArgumentError, "invalid: expected unique cards" if cards != cards.uniq
 
     cards
   end

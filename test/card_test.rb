@@ -122,6 +122,15 @@ describe Card do
     end
   end
 
+  it "must be considered uniq only if they have a different id" do
+    card1 = Card.new(0)
+    card2 = Card.new(1)
+    card3 = Card.new(0)
+
+    cards = [card1, card2, card3]
+    assert_equal [card1, card2], cards.uniq
+  end
+
   describe "when calling #inspect" do
     it "must return a string representing the object" do
       card = Card.new(0)
