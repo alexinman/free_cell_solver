@@ -106,4 +106,38 @@ describe State do
     state = State.build(Deck.new)
     refute_equal state, Object.new
   end
+
+  it "must be eql? to another state with the same cells, foundations, and cascades" do
+    state1 = State.build(Deck.new)
+    state1.foundations[0].add(state1.cascades[0].remove(1))
+    state1.cells[1].add(state1.cascades[0].remove(1))
+
+    state2 = State.build(Deck.new)
+    state2.foundations[0].add(state2.cascades[0].remove(1))
+    state2.cells[1].add(state2.cascades[0].remove(1))
+
+    assert state1.eql?(state2)
+    refute state1.object_id.eql?(state2.object_id)
+  end
+
+  it "must not be eql? to another state with different cells, foundations, or cascades" do
+    state1 = State.build(Deck.new)
+
+    state2 = State.build(Deck.new)
+    state2.cells[0].add([Card.new(1)])
+    refute state1.eql?(state2)
+
+    state2 = State.build(Deck.new)
+    state2.foundations[0].add([Card.new(1)])
+    refute state1.eql?(state2)
+
+    state2 = State.build(Deck.new)
+    state2.cascades[0].add([Card.new(1)])
+    refute state1.eql?(state2)
+  end
+
+  it "must not be eql? to another object that is not a state" do
+    state = State.build(Deck.new)
+    refute state.eql?(Object.new)
+  end
 end

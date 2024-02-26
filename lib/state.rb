@@ -31,6 +31,8 @@ class State
       cascades == other.cascades
   end
 
+  alias eql? ==
+
   private
 
   attr_writer :cascades, :cells, :foundations
