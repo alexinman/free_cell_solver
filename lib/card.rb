@@ -1,4 +1,6 @@
 class Card
+  include Comparable
+
   SUITS = ["♥", "♣", "♦", "♠"].freeze
 
   attr_reader :color, :face_value, :suit_value, :to_s
@@ -14,6 +16,12 @@ class Card
 
   def inspect
     "#<Card #{self}>"
+  end
+
+  def <=>(other)
+    return unless other.is_a? Card
+
+    [face_value, suit_value] <=> [other.face_value, other.suit_value]
   end
 
   def ==(other)
