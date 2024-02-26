@@ -22,6 +22,10 @@ class Card
 
   alias eql? ==
 
+  def hash
+    to_s.hash
+  end
+
   def self.parse(input)
     raise ArgumentError, "invalid: #{input}" unless (2..3).include?(input.size)
 

@@ -16,7 +16,7 @@ describe Deck do
 
     it "must have all unique elements" do
       deck = Deck.new
-      assert_equal deck, deck.uniq(&:to_s)
+      assert_equal deck, deck.uniq
     end
 
     it "must contain only cards" do
@@ -32,7 +32,7 @@ describe Deck do
 
       cards = Deck.parse(input)
       assert_equal 52, cards.size
-      assert_equal cards, cards.uniq(&:to_s)
+      assert_equal cards, cards.uniq
       assert_equal "A♠", cards.first.to_s
       assert_equal "K♦", cards.last.to_s
     end
