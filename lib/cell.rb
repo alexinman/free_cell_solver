@@ -1,8 +1,4 @@
 class Cell < Location
-  def initialize
-    super([])
-  end
-
   def add?(cards)
     cards.length == 1 && self.cards.empty?
   end

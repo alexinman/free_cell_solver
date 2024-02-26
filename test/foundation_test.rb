@@ -1,17 +1,6 @@
 require "test_helper"
 
 describe Foundation do
-  describe "when initializing" do
-    it "must have no cards" do
-      foundation = Foundation.new
-      assert_empty foundation.send(:cards)
-    end
-
-    it "must not accept cards" do
-      assert_raises(ArgumentError) { Foundation.new([Card.new(1)]) }
-    end
-  end
-
   describe "when asking if it can add cards" do
     it "must return true if it has no cards and the cards to add is an Ace" do
       foundation = Foundation.new
