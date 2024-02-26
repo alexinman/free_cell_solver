@@ -127,6 +127,39 @@ describe Location do
     refute_equal location, test_location
     refute_equal test_location, location
   end
+
+  it "must be eql? to another location with the same cards" do
+    card1 = Card.new(1)
+    card2 = Card.new(2)
+    location1 = Location.new([card1, card2])
+    location2 = Location.new([card1, card2])
+
+    assert location1.eql?(location2)
+    refute location1.object_id.eql?(location2.object_id)
+  end
+
+  it "must not be eql? to another location with different cards" do
+    card1 = Card.new(1)
+    card2 = Card.new(2)
+    location1 = Location.new([card1, card2])
+    location2 = Location.new([card1])
+
+    refute location1.eql?(location2)
+  end
+
+  it "must not be eql? to non-Location objects" do
+    card = Card.new(1)
+    location = Location.new([card])
+
+    test_location = TestLocation.new([card])
+
+    refute location.eql?(card)
+    refute location.eql?(nil)
+    refute location.eql?(1)
+    refute location.eql?("location")
+    refute location.eql?(test_location)
+    refute test_location.eql?(location)
+  end
 end
 
 class TestLocation < Location

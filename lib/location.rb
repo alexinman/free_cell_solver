@@ -31,6 +31,8 @@ class Location
     other.instance_of?(self.class) && cards == other.cards
   end
 
+  alias eql? ==
+
   private
 
   attr_accessor :internal_cards
