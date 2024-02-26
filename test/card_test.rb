@@ -194,4 +194,34 @@ describe Card do
       assert_equal :black, Cards::ACE_OF_SPADES.color
     end
   end
+
+  describe "when sorting cards" do
+    it "must sort them by face value and suit" do
+      cards = Array.new(52, &Card.method(:new)).shuffle.sort
+
+      expected = [
+        "A♥", "A♣", "A♦", "A♠",
+        "2♥", "2♣", "2♦", "2♠",
+        "3♥", "3♣", "3♦", "3♠",
+        "4♥", "4♣", "4♦", "4♠",
+        "5♥", "5♣", "5♦", "5♠",
+        "6♥", "6♣", "6♦", "6♠",
+        "7♥", "7♣", "7♦", "7♠",
+        "8♥", "8♣", "8♦", "8♠",
+        "9♥", "9♣", "9♦", "9♠",
+        "10♥", "10♣", "10♦", "10♠",
+        "J♥", "J♣", "J♦", "J♠",
+        "Q♥", "Q♣", "Q♦", "Q♠",
+        "K♥", "K♣", "K♦", "K♠"
+      ]
+
+      assert_equal expected, cards.map(&:to_s)
+    end
+  end
+
+  describe "when comparing with not a card" do
+    it "must fail" do
+      assert_nil Card.new(0) <=> "foo"
+    end
+  end
 end
