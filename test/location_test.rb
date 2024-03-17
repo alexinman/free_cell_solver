@@ -139,14 +139,27 @@ describe Location do
     assert_equal [location1, location2], locations.uniq
   end
 
-  it "must be considered empty if it has no cards" do
-    location = Location.new
-    assert location.empty?
+  describe "when sorting locations" do
+    it "must sort them by their cards" do
+      card1 = Card.new(1)
+      card2 = Card.new(2)
+      card3 = Card.new(3)
+      location1 = Location.new
+      location2 = Location.new([card1, card2])
+      location3 = Location.new([card1, card2, card3])
+      location4 = Location.new([card1, card3])
+      location5 = Location.new([card2, card1])
+
+      expected = [location1, location2, location3, location4, location5]
+      assert_equal expected, [location5, location4, location3, location1, location2].sort
+    end
   end
 
-  it "must not be considered empty if it has cards" do
-    location = Location.new([Card.new(1)])
-    refute location.empty?
+  describe "when comparing with not a Location" do
+    it "must fail" do
+      assert_nil Location.new <=> "foo"
+      assert_nil Location.new <=> TestLocation.new
+    end
   end
 end
 

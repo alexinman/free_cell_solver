@@ -9,6 +9,7 @@ class Location
   # - remove?(number)
   # - cards
   # - empty?
+  # - <=>(other)
   # - ==(other)
   # - eql?(other)
   # - hash
