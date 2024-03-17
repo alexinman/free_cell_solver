@@ -86,6 +86,32 @@ describe State do
     refute_equal state1.object_id, state2.object_id
   end
 
+  it "must be equal to another state with the same cells, foundations, and cascades in a different order" do
+    cells = [
+      Cell.new([Cards::ACE_OF_DIAMONDS]),
+      Cell.new([Cards::TWO_OF_DIAMONDS]),
+      Cell.new
+    ]
+    foundations = [
+      Foundation.new([Cards::ACE_OF_CLUBS, Cards::TWO_OF_CLUBS]),
+      Foundation.new([Cards::ACE_OF_SPADES]),
+      Foundation.new
+    ]
+    cascades = [
+      Cascade.new([Cards::ACE_OF_HEARTS, Cards::TWO_OF_HEARTS]),
+      Cascade.new([Cards::TWO_OF_SPADES]),
+      Cascade.new
+    ]
+    state = State.new(cells, foundations, cascades)
+    cells.permutation do |c|
+      foundations.permutation do |f|
+        cascades.permutation do |ca|
+          assert_equal state, State.new(c, f, ca)
+        end
+      end
+    end
+  end
+
   it "must not be equal to another state with different cells, foundations, or cascades" do
     state1 = State.build(Deck.new)
 
