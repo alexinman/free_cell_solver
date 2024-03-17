@@ -30,7 +30,7 @@ class Location
   end
 
   def <=>(other)
-    return unless other.is_a? Location
+    return unless other.instance_of?(self.class)
 
     cards <=> other.cards
   end

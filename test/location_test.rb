@@ -158,6 +158,7 @@ describe Location do
   describe "when comparing with not a Location" do
     it "must fail" do
       assert_nil Location.new <=> "foo"
+      assert_nil Location.new <=> TestLocation.new
     end
   end
 end
