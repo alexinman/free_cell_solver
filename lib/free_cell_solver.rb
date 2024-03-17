@@ -8,7 +8,7 @@ require_relative "cascade"
 require_relative "state"
 require_relative "state_formatter"
 require_relative "state_duplicator"
-require_relative "state_generator"
+# require_relative "state_generator"
 
 class FreeCellSolver
   attr_accessor :deck

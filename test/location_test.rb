@@ -138,6 +138,28 @@ describe Location do
     locations = [location1, location2, location3]
     assert_equal [location1, location2], locations.uniq
   end
+
+  describe "when sorting locations" do
+    it "must sort them by their cards" do
+      card1 = Card.new(1)
+      card2 = Card.new(2)
+      card3 = Card.new(3)
+      location1 = Location.new
+      location2 = Location.new([card1, card2])
+      location3 = Location.new([card1, card2, card3])
+      location4 = Location.new([card1, card3])
+      location5 = Location.new([card2, card1])
+
+      expected = [location1, location2, location3, location4, location5]
+      assert_equal expected, [location5, location4, location3, location1, location2].sort
+    end
+  end
+
+  describe "when comparing with not a Location" do
+    it "must fail" do
+      assert_nil Location.new <=> "foo"
+    end
+  end
 end
 
 class TestLocation < Location

@@ -26,9 +26,9 @@ class State
 
   def ==(other)
     other.instance_of?(self.class) &&
-      cells == other.cells &&
-      foundations == other.foundations &&
-      cascades == other.cascades
+      cells.sort == other.cells.sort &&
+      foundations.sort == other.foundations.sort &&
+      cascades.sort == other.cascades.sort
   end
 
   alias eql? ==

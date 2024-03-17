@@ -1,4 +1,6 @@
 class Location
+  include Comparable
+
   def initialize(cards = [])
     self.internal_cards = cards.dup
   end
@@ -25,6 +27,12 @@ class Location
 
   def empty?
     internal_cards.empty?
+  end
+
+  def <=>(other)
+    return unless other.is_a? Location
+
+    cards <=> other.cards
   end
 
   def ==(other)
