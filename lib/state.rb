@@ -8,6 +8,8 @@ class State
   # - foundations
   # - cascades
   # - ==(other)
+  # - eql?(other)
+  # - hash
   # And you can validate your implementation by running `rake`.
   # Good luck!
 end
