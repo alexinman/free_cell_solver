@@ -112,6 +112,32 @@ describe State do
     end
   end
 
+  it "must not be considered uniq when cells/foundations/cascades are the same except for order" do
+    cells = [
+      Cell.new([Cards::ACE_OF_DIAMONDS]),
+      Cell.new([Cards::TWO_OF_DIAMONDS]),
+      Cell.new
+    ]
+    foundations = [
+      Foundation.new([Cards::ACE_OF_CLUBS, Cards::TWO_OF_CLUBS]),
+      Foundation.new([Cards::ACE_OF_SPADES]),
+      Foundation.new
+    ]
+    cascades = [
+      Cascade.new([Cards::ACE_OF_HEARTS, Cards::TWO_OF_HEARTS]),
+      Cascade.new([Cards::TWO_OF_SPADES]),
+      Cascade.new
+    ]
+    states = cells.permutation.flat_map do |c|
+      foundations.permutation.flat_map do |f|
+        cascades.permutation.flat_map do |ca|
+          State.new(c, f, ca)
+        end
+      end
+    end
+    assert_equal 1, states.uniq.size
+  end
+
   it "must not be equal to another state with different cells, foundations, or cascades" do
     state1 = State.build(Deck.new)
 
@@ -126,6 +152,21 @@ describe State do
     state2 = State.build(Deck.new)
     state2.cascades[0].add([Card.new(1)])
     refute_equal state1, state2
+  end
+
+  it "must be considered uniq with different cells, foundations, or cascades" do
+    state1 = State.build(Deck.new)
+
+    state2 = State.build(Deck.new)
+    state2.cells[0].add([Card.new(1)])
+
+    state3 = State.build(Deck.new)
+    state3.foundations[0].add([Card.new(1)])
+
+    state4 = State.build(Deck.new)
+    state4.cascades[0].add([Card.new(1)])
+
+    assert_equal 4, [state1, state2, state3, state4].uniq.size
   end
 
   it "must not be equal to another object that is not a state" do

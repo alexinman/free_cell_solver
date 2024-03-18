@@ -3,7 +3,7 @@ module StateGenerator
     def generate(state)
       max = determine_max(state)
       locations = state.foundations + state.cells + state.cascades
-      locations.permutation(2).flat_map { |from, to| generate_between(state, from, to, max) }
+      locations.permutation(2).flat_map { |from, to| generate_between(state, from, to, max) }.uniq
     end
 
     private

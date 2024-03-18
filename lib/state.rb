@@ -33,6 +33,10 @@ class State
 
   alias eql? ==
 
+  def hash
+    [cells.sort, foundations.sort, cascades.sort].hash
+  end
+
   private
 
   attr_writer :cascades, :cells, :foundations
