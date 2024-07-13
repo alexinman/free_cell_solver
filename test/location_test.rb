@@ -100,7 +100,7 @@ describe Location do
   end
 
   it "must not be empty when it has cards" do
-    refute_empty Location.new([Card.new])
+    refute_empty Location.new([Card.new(1)])
   end
 
   it "must be equal to another location with the same cards" do
