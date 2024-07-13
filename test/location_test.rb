@@ -95,6 +95,14 @@ describe Location do
     assert_raises(NoMethodError) { location.cards = [] }
   end
 
+  it "must be empty when it has no cards" do
+    assert_empty Location.new
+  end
+
+  it "must not be empty when it has cards" do
+    refute_empty Location.new([Card.new])
+  end
+
   it "must be equal to another location with the same cards" do
     card1 = Card.new(1)
     card2 = Card.new(2)
