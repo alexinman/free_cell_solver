@@ -17,6 +17,7 @@ jobs:
         with:
           name: coverage
           path: coverage/.last_run.json
+          include-hidden-files: true
 
   lint:
     runs-on: ubuntu-latest
