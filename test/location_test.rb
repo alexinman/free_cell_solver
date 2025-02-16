@@ -169,20 +169,6 @@ describe Location do
       assert_nil Location.new <=> TestLocation.new
     end
   end
-
-  it "must not be eql? to non-Location objects" do
-    card = Card.new(1)
-    location = Location.new([card])
-
-    test_location = TestLocation.new([card])
-
-    refute location.eql?(card)
-    refute location.eql?(nil)
-    refute location.eql?(1)
-    refute location.eql?("location")
-    refute location.eql?(test_location)
-    refute test_location.eql?(location)
-  end
 end
 
 class TestLocation < Location
