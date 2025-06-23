@@ -1,4 +1,7 @@
 # RuboCop’s default configuration: https://github.com/rubocop/rubocop/blob/master/config/default.yml
+plugins:
+  - rubocop-minitest
+  - rubocop-rake
 
 AllCops:
   NewCops: enable
@@ -20,7 +23,7 @@ Metrics/MethodLength:
   Max: 5
   CountAsOne: ['array', 'hash', 'heredoc', 'method_call']
 
-Naming/PredicateName:
+Naming/PredicatePrefix:
   AllowedMethods:
     - has_many_path
 
