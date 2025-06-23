@@ -4,6 +4,7 @@ describe FreeCellSolver do
   describe "when initializing with an empty string" do
     it "must deal a shuffled deck" do
       solver = FreeCellSolver.new("")
+
       assert_equal 52, solver.deck.size
       refute_equal solver.deck, solver.deck.sort_by(&:to_s)
     end
@@ -21,6 +22,7 @@ describe FreeCellSolver do
         "A♣", "7♠", "2♥", "10♦", "6♥", "Q♠", "7♥", "Q♣",
         "Q♦", "Q♥", "6♠", "4♦"
       ]
+
       assert_equal expected, solver.deck.map(&:to_s)
     end
   end

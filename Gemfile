@@ -11,6 +11,8 @@ gem "minitest-reporters", require: false
 
 # Lint Ruby files
 gem "rubocop", require: false
+gem "rubocop-minitest", require: false
+gem "rubocop-rake", require: false
 
 # Code coverage for Ruby
 gem "simplecov", require: false

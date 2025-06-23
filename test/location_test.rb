@@ -4,6 +4,7 @@ describe Location do
   describe "when initializing with no cards" do
     it "must have no cards" do
       location = Location.new
+
       assert_empty location.cards
     end
   end
@@ -12,6 +13,7 @@ describe Location do
     it "must have the cards" do
       cards = [Card.new(1)]
       location = Location.new(cards)
+
       assert_equal cards, location.cards
     end
   end
@@ -67,7 +69,7 @@ describe Location do
 
       assert_equal [card1, card2], location1.cards
       assert_equal [card1], location2.cards
-      assert_equal [], location3.cards
+      assert_empty location3.cards
     end
 
     it "must not modify the original cards" do
@@ -110,7 +112,7 @@ describe Location do
     location2 = Location.new([card1, card2])
 
     assert_equal location1, location2
-    refute_equal location1.object_id, location2.object_id
+    refute_same location1, location2
   end
 
   it "must not be equal to another location with different cards" do
@@ -144,6 +146,7 @@ describe Location do
     location3 = Location.new([card1, card2])
 
     locations = [location1, location2, location3]
+
     assert_equal [location1, location2], locations.uniq
   end
 
@@ -159,6 +162,7 @@ describe Location do
       location5 = Location.new([card2, card1])
 
       expected = [location1, location2, location3, location4, location5]
+
       assert_equal expected, [location5, location4, location3, location1, location2].sort
     end
   end

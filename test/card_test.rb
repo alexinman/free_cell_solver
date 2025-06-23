@@ -128,6 +128,7 @@ describe Card do
     card3 = Card.new(0)
 
     cards = [card1, card2, card3]
+
     assert_equal [card1, card2], cards.uniq
   end
 
