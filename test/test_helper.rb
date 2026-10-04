@@ -1,4 +1,10 @@
 require "simplecov"
+
+SimpleCov.start do
+  enable_coverage :branch
+  skip "/test/"
+end
+
 require "custom_assertions"
 require "minitest/autorun"
 require "minitest/reporters"
