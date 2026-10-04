@@ -3,6 +3,7 @@ require_relative "cards"
 require_relative "deck"
 require_relative "location"
 require_relative "cell"
+require_relative "foundation"
 
 class FreeCellSolver
   attr_accessor :deck
